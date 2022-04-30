@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -10,15 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent{
   
+  selctedCountry: string = '';
+
   constructor(private http: HttpClient){ 
-    this.loadPosts();}
+    this.loadGermany();}
 
   posts: any [] = [];
   names: string [] = [];
   listeners: string [] = [];
   pictures: string [] = [];
+  countries: string[] = ["germany", "france", "spain"];
 
   loadGermany(){
     this.http
@@ -39,47 +42,30 @@ export class AppComponent {
       }
   
   });
-  }
-
-  loadFrance(){
-    this.http
-  .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=france&api_key=9de61f588c001cf9f09470d925434648&format=json')
-  .subscribe((posts: any)=>{
-      
-      for(let i = 0; i<10; i++)
-      {
-        this.catPostText[i] = posts.topartists.artist[i].name;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.listeners[i] = posts.topartists.artist[i].listeners;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.pictures[i] = posts.topartists.artist[i].image[0];
-      }
-     
-  });
-  }
-loadPosts(){
-  this.http
-  .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&api_key=9de61f588c001cf9f09470d925434648&format=json')
-  .subscribe((posts: any)=>{
-      
-      for(let i = 0; i<10; i++)
-      {
-        this.catPostText[i] = posts.topartists.artist[i].name;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.listeners[i] = posts.topartists.artist[i].listeners;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.pictures[i] =posts.topartists.artist[i].image[0][0];
-      }
-  });
 }
+
+selectedChangeHandler (event){
+
+  this.selctedCountry = event.target.value; 
+  this.http
+  .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country='+''+this.selctedCountry+''+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
+  .subscribe((posts: any)=>{
+
+    for(let i = 0; i<10; i++)
+    {
+      this.catPostText[i] = posts.topartists.artist[i].name;
+    }
+    for(let i = 0; i<10; i++)
+    {
+      this.listeners[i] = posts.topartists.artist[i].listeners;
+    }
+    for(let i = 0; i<10; i++)
+    {
+      this.pictures[i] =posts.topartists.artist[i].image[0][0];
+    }
+});
+}
+
 
   catPostText = [
   ]
@@ -90,8 +76,4 @@ loadPosts(){
     "assets/img/cat/3.jpg",
     "assets/img/cat/4.jpg",
     "assets/img/cat/5.jpg"]
-
-  buttonClicked(){
-    alert("Hallo wie geht es dir?")
-  }
 }
