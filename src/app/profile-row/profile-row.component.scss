@@ -1,0 +1,25 @@
+.profile-row {
+    display: flex;
+    align-items: center;
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: right;
+        margin-left: 32px;
+    }
+}
+
+.name {
+    width: 140px;
+}
+
+a {
+    font-size: 12px;
+    color: blue;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}

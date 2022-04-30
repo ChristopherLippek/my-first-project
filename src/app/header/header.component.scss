@@ -1,0 +1,34 @@
+header {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 100%;
+}
+
+.logo {
+    height: 60px;
+    margin-left: 80px;
+}
+
+.box {
+    float: left;
+    height: 60px;
+    width: 25%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+button {
+    cursor: pointer;
+    &:hover {
+        background-color: blue;
+    }
+}
+
+.headerDiv {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.centerBox {
+    margin-top: 20px;
+}
