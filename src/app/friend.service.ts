@@ -12,10 +12,9 @@ export class FriendService {
     text = [];
   constructor() { }
 
-  addFriend(name, text, img)
+  addFriend(name, img)
   {
     this.names.push(name);
-    this.text.push(text);
     this.catPictures.push(img)
     
   }

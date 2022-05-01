@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-proposals',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./proposals.component.scss']
 })
 export class ProposalsComponent implements OnInit {
+
+  @Input() similar: string[] = [];
+  @Input() picture: string[] = [];
 
   names = ['Luna', 'Aska', 'Rudy', 'Fin', "Prinz"]
   catPictures =[

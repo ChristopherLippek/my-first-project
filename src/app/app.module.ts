@@ -11,6 +11,7 @@ import { FriendboxComponent } from './friendbox/friendbox.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     CatCardComponent,
     ProposalsComponent,
     ProfileRowComponent,
-    FriendboxComponent
+    FriendboxComponent,
+    ArtistDetailComponent
   ],
   imports: [
     BrowserModule,

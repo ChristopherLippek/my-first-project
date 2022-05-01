@@ -1,6 +1,4 @@
-<app-profile-row [canFllow]="false"></app-profile-row>
-
 <div class="margin-bootom-16">
-    <b>Freundesvorschläge</b>
+    <b>Vorschläge</b>
 </div>
-<app-profile-row *ngFor="let i of [0,1,2,3]" [text]='names[i]' [picture]='catPictures[i]' [age]="age[i]"></app-profile-row>
+<app-profile-row *ngFor="let i of [0,1,2,3,4]" [similar]='similar[i]' [picture]='picture[i]'></app-profile-row>

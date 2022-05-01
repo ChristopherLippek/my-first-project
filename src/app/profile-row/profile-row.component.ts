@@ -8,10 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileRowComponent implements OnInit {
 
-  @Input() text:string='Luna'
-  @Input() age:string='1,5'
-  @Input() picture:string='/assets/img/cat/1.jpg'
-  @Input() canFllow = true
+  @Input() similar: string='';
+  @Input() picture: string= '';
   
   constructor(public fs: FriendService) { }
 
