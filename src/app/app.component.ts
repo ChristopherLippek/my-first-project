@@ -1,3 +1,4 @@
+import { HeaderComponent } from './header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
@@ -17,11 +18,15 @@ export class AppComponent{
   selectedArtist: string = "";
 
   constructor(private http: HttpClient){ 
-    this.loadGermany();}
+    this.loadGermany();
+}
 
-  summary: string = "";
-  published: string = "";
-  content: string = "";
+  detailName: string = '';
+  detailListener: string = '';
+  detailPlays: string = '';
+  detailTrack: string [] = [];
+  detailAlbum: string [] = []; 
+
   imageUrl$: any;
   similar: string[] = [];
   pic: string[] = [];
@@ -80,18 +85,39 @@ selectedChangeHandler (event){
 onSelectedArtist(name: string)
 {
  this.selectedArtist = name;
+
+ this.http
+ .get('https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
+ .subscribe((posts: any)=>{
+
+   for(let i = 0; i<5; i++)
+   {
+     this.detailAlbum[i] = posts.topalbums.album[i].name;
+   }
+
+   });
+
+
+   this.http
+  .get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
+  .subscribe((posts: any)=>{
+
+   for(let i = 0; i<5; i++)
+   {
+     this.detailTrack[i] = posts.toptracks.track[i].name;
+   }
+
+  });
+ 
+
  this.http
  .get('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
  .subscribe((posts: any)=>{
 
-  this.summary = posts.artist.bio.summary;
-  this.published = posts.artist.bio.published;
-  this.content = posts.artist.bio.content;
-  posts.artist.name; 
-  posts.artist.stats.listeners;
-  posts.artist.stats.playcount;
+  this.detailName = posts.artist.name;
+  this.detailListener = posts.artist.stats.listeners;
+  this.detailPlays = posts.artist.stats.playcount;
 
-  
   for(let i = 0; i<5; i++)
   {
     this.similar[i] = posts.artist.similar.artist[i].name;
@@ -104,6 +130,7 @@ onSelectedArtist(name: string)
 
 returnSelectedItem(){
   this.selectedArtist = "";
+  
 }
 
 }

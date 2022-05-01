@@ -1,4 +1,3 @@
-import { FriendService } from './../friend.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +10,7 @@ export class ProfileRowComponent implements OnInit {
   @Input() similar: string='';
   @Input() picture: string= '';
   
-  constructor(public fs: FriendService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

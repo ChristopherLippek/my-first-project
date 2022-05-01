@@ -7,10 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArtistDetailComponent implements OnInit {
 
-  @Input() summary:string ='';
-  @Input() published:string ='';
-  @Input() content:string ='';
-
+  @Input() name:string ='';
+  @Input() listeners:string ='';
+  @Input() playcount:string ='';
+  @Input() tracks:string [] = [];
+  @Input() alben:string [] = [];
+  
   constructor() { }
 
   ngOnInit(): void {

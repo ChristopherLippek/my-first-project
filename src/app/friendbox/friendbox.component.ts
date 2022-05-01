@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FriendService } from '../friend.service';
+
 
 @Component({
   selector: 'app-friendbox',
@@ -10,7 +10,7 @@ export class FriendboxComponent implements OnInit {
 
 
 
-  constructor(public fs: FriendService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

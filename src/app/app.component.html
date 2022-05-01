@@ -17,7 +17,7 @@
 </div>
 
 <div *ngIf="selectedArtist">
-    <app-artist-detail [summary]="summary" [published]="published" [content]="content"></app-artist-detail>
+    <app-artist-detail [name]="detailName" [listeners]="detailListener" [playcount]="detailPlays" [tracks]="detailTrack" [alben]="detailAlbum"></app-artist-detail>
     <app-proposals [similar]="similar" [picture]="pic"></app-proposals>
     <div>
         <button (click)="returnSelectedItem()">Zurück</button>

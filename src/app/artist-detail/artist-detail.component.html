@@ -1,3 +1,14 @@
-<p>{{summary}}</p>
-<p>{{published}}</p>
-<p>{{content}}</p>
+<div class="text">
+    <p> Der Künstler heißt: {{name}}</p>
+    <p>Er hat: {{listeners}} Zuhörer</p>
+    <p>und soviele streams: {{playcount}}</p>
+</div>
+<div class="left">
+    <h1>Besten Alben</h1>
+    <p *ngFor="let i of [0,1,2,3,4]">{{alben[i]}}</p>
+</div>
+
+<div class="right">
+    <h2>Besten Lieder</h2>
+    <p *ngFor="let i of [0,1,2,3,4]">{{tracks[i]}}</p>
+</div>
