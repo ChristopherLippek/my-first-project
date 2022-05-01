@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CatCardComponent } from './cat-card/cat-card.component';
+import { ArtistCardComponent } from './artist-card/artist-card.component';
 import { ProposalsComponent } from './proposals/proposals.component';
 import { ProfileRowComponent } from './profile-row/profile-row.component';
 import { FriendboxComponent } from './friendbox/friendbox.component';
@@ -17,7 +17,7 @@ import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    CatCardComponent,
+    ArtistCardComponent,
     ProposalsComponent,
     ProfileRowComponent,
     FriendboxComponent,

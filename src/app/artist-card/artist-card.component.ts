@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cat-card',
-  templateUrl: './cat-card.component.html',
-  styleUrls: ['./cat-card.component.scss']
+  selector: 'app-artist-card',
+  templateUrl: './artist-card.component.html',
+  styleUrls: ['./artist-card.component.scss']
 })
-export class CatCardComponent implements OnInit {
+export class ArtistCardComponent implements OnInit {
 
   @Input() text:string ='';
   @Input() picture:string ='';

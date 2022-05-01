@@ -39,7 +39,7 @@ export class AppComponent{
       
       for(let i = 0; i<10; i++)
       {
-        this.catPostText[i] = posts.topartists.artist[i].name;
+        this.names[i] = posts.topartists.artist[i].name;
       }
       for(let i = 0; i<10; i++)
       {
@@ -62,7 +62,7 @@ selectedChangeHandler (event){
 
     for(let i = 0; i<10; i++)
     {
-      this.catPostText[i] = posts.topartists.artist[i].name;
+      this.names[i] = posts.topartists.artist[i].name;
     }
     for(let i = 0; i<10; i++)
     {
@@ -103,13 +103,4 @@ returnSelectedItem(){
   this.selectedArtist = "";
 }
 
-  catPostText = [
-  ]
-
-  catPictures =[
-    "assets/img/cat/1.jpg",
-    "assets/img/cat/2.jpg",
-    "assets/img/cat/3.jpg",
-    "assets/img/cat/4.jpg",
-    "assets/img/cat/5.jpg"]
 }
