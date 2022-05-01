@@ -3,25 +3,28 @@
 
 
 
-<div class="flexrow">
-    <div class="container">
-        <select (change)="selectedChangeHandler($event)">
+<div *ngIf="!selectedArtist">
+    <div class="flexrow">
+        <div class="container">
+            <select (change)="selectedChangeHandler($event)">
             <option *ngFor="let country of countries">{{country}}</option>
         </select>
-        <div *ngIf="!selectedArtist">
+
             <app-cat-card *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [text]='catPostText[i]' [picture]='catPictures[i]' [listeners]='listeners[i]' (click)="onSelectedArtist(catPostText[i])">
             </app-cat-card>
         </div>
-        <div *ngIf="selectedArtist">
-            <app-artist-detail [summary]="summary" [published]="published" [content]="content"></app-artist-detail>
-            <app-proposals [similar]="similar" [picture]="pic"></app-proposals>
-        </div>
     </div>
-    <div>
-        <button (click)="returnSelectedItem()">Zurück</button>
-    </div>
-
 </div>
+<div *ngIf="selectedArtist">
+    <app-artist-detail [summary]="summary" [published]="published" [content]="content"></app-artist-detail>
+    <app-proposals [similar]="similar" [picture]="pic"></app-proposals>
+</div>
+
+<div>
+    <button (click)="returnSelectedItem()">Zurück</button>
+</div>
+
+
 
 <div *ngFor=" let post of posts ">
     <h1>{{post.artists.artist.name}}</h1>
