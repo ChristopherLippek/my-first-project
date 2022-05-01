@@ -1,6 +1,8 @@
+import { Artist } from './artist';
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
+import { ArtistServicesService } from './artist-services.service';
 
 
 
@@ -13,10 +15,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent{
   
   selctedCountry: string = '';
+  
+  constructor(private http: HttpClient, private artistSearch: ArtistServicesService)
+  { 
+    artistSearch[1  ].listner
+    this.loadGermany2();
+  }
 
-  constructor(private http: HttpClient){ 
-    this.loadGermany();}
-
+  
   posts: any [] = [];
   names: string [] = [];
   listeners: string [] = [];
@@ -44,24 +50,22 @@ export class AppComponent{
   });
 }
 
+loadGermany2(){
+
+}
+
 selectedChangeHandler (event){
 
   this.selctedCountry = event.target.value; 
   this.http
   .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country='+''+this.selctedCountry+''+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
   .subscribe((posts: any)=>{
+    for(let i = 0; i<10; i++)
+    {
+      this.listeners[i] = this.artistSearch[i].listner;
+      this.names[i] = this.artistSearch[i].name;
+      this.pictures[i] = this.artistSearch[i].picture; 
 
-    for(let i = 0; i<10; i++)
-    {
-      this.catPostText[i] = posts.topartists.artist[i].name;
-    }
-    for(let i = 0; i<10; i++)
-    {
-      this.listeners[i] = posts.topartists.artist[i].listeners;
-    }
-    for(let i = 0; i<10; i++)
-    {
-      this.pictures[i] =posts.topartists.artist[i].image[0][0];
     }
 });
 }

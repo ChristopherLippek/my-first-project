@@ -6,10 +6,9 @@ import { Injectable } from '@angular/core';
 export class FriendService {
 
   names = [];
-
   catPictures =[];
+  text = [];
 
-    text = [];
   constructor() { }
 
   addFriend(name, text, img)
