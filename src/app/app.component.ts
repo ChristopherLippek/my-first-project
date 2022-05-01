@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
+import { interval, map, startWith } from 'rxjs';
 
 
 
@@ -21,7 +22,7 @@ export class AppComponent{
   summary: string = "";
   published: string = "";
   content: string = "";
-
+  imageUrl$: any;
   similar: string[] = [];
   pic: string[] = [];
 
@@ -90,12 +91,14 @@ onSelectedArtist(name: string)
   posts.artist.stats.listeners;
   posts.artist.stats.playcount;
 
+  
   for(let i = 0; i<5; i++)
   {
     this.similar[i] = posts.artist.similar.artist[i].name;
     this.pic[i] = posts.artist.image[0]['#text'];
-  }
-  
+
+    this.imageUrl$ = interval(5000).pipe(map(i => {return this.pic[i]}),startWith(this.pic[i]));
+    }
 });
 }
 
