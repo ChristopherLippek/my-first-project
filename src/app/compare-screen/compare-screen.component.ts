@@ -14,6 +14,9 @@ export class CompareScreenComponent implements OnInit {
   published: string [] = [];
   summary: string[] = [];
 
+  genre1: string[] = [];
+  genre2: string[] = [];
+  
   constructor(private http: HttpClient) { }
 
 getValue(val: string){
@@ -25,6 +28,10 @@ getValue(val: string){
    this.playCount[0] = posts.artist.stats.playcount;
    this.published[0] = posts.artist.bio.published;
    this.summary[0] = posts.artist.bio.summary;
+   for(let i = 0; i<5; i++)
+  {
+    this.genre1[i] = posts.artist.tags.tag[i].name
+  }
  });
 }
 
@@ -37,6 +44,11 @@ getValue2(val: string){
   this.playCount[1] = posts.artist.stats.playcount;
   this.published[1] = posts.artist.bio.published;
   this.summary[1] = posts.artist.bio.summary;
+  for(let i = 0; i<5; i++)
+  {
+    this.genre2[i] = posts.artist.tags.tag[i].name
+  }
+  
 });
 }
 
