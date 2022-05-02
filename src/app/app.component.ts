@@ -32,6 +32,8 @@ export class AppComponent{
   pic: string[] = [];
 
 
+  buttonSignalFromHeader: string; 
+
   posts: any [] = [];
   names: string [] = [];
   listeners: string [] = [];
@@ -133,4 +135,13 @@ returnSelectedItem(){
   
 }
 
+receivedChildMessage: string;
+
+getMessage(message) {
+    this.receivedChildMessage = message;
+}
+
+returnToMain(){
+  this.receivedChildMessage = "";
+}
 }

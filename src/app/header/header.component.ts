@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { SearchArtistService } from './../search-artist.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 
 @Component({
@@ -10,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() messageEvent = new EventEmitter<string>();
+
   value: string = ''; 
+  message: string;
 
   constructor(private http: HttpClient) {
    }
@@ -23,6 +26,12 @@ export class HeaderComponent implements OnInit {
  });
     
 }
+
+sendMessage(message) {
+  message = "wichtig";
+  this.messageEvent.emit(message)
+}
+  
 
   ngOnInit(): void {
   }

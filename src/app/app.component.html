@@ -1,30 +1,34 @@
-<app-header></app-header>
+<app-header (messageEvent)="getMessage('Wunder')"></app-header>
 
 
 
-
-<div *ngIf="!selectedArtist">
-    <div class="flexrow">
-        <div class="container">
-            <select (change)="selectedChangeHandler($event)">
+<div *ngIf="!receivedChildMessage">
+    <div *ngIf="!selectedArtist">
+        <div class="flexrow">
+            <div class="container">
+                <select (change)="selectedChangeHandler($event)">
             <option *ngFor="let country of countries">{{country}}</option>
         </select>
 
-            <app-artist-card *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [text]='names[i]' [picture]='pic[i]' [listeners]='listeners[i]' (click)="onSelectedArtist(names[i])">
-            </app-artist-card>
+                <app-artist-card *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [text]='names[i]' [picture]='pic[i]' [listeners]='listeners[i]' (click)="onSelectedArtist(names[i])">
+                </app-artist-card>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selectedArtist">
+        <app-artist-detail [name]="detailName" [listeners]="detailListener" [playcount]="detailPlays" [tracks]="detailTrack" [alben]="detailAlbum"></app-artist-detail>
+        <app-proposals [similar]="similar" [picture]="pic"></app-proposals>
+        <div>
+            <button (click)="returnSelectedItem()">Zurück</button>
         </div>
     </div>
 </div>
-
-<div *ngIf="selectedArtist">
-    <app-artist-detail [name]="detailName" [listeners]="detailListener" [playcount]="detailPlays" [tracks]="detailTrack" [alben]="detailAlbum"></app-artist-detail>
-    <app-proposals [similar]="similar" [picture]="pic"></app-proposals>
-    <div>
-        <button (click)="returnSelectedItem()">Zurück</button>
-    </div>
-</div>
-
 <div *ngFor=" let post of posts ">
     <h1>{{post.artists.artist.name}}</h1>
     <p>{{post.artists.artist.playcount}}</p>
+</div>
+<div *ngIf="receivedChildMessage">
+    <p>{{receivedChildMessage}}</p>
+    <button (click)="returnToMain()">Zurück</button>
 </div>
