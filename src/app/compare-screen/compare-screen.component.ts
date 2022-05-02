@@ -8,13 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompareScreenComponent implements OnInit {
 
+  name: string[] = []; 
+  listener: string [] = [];
+  playCount: string [] = [];
+  published: string [] = [];
+  summary: string[] = [];
+
   constructor(private http: HttpClient) { }
 
 getValue(val: string){
     this.http
  .get('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+val+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
  .subscribe((posts: any)=>{
-   alert(posts.artist.stats.listeners)
+   this.name[0] = posts.artist.name;
+   this.listener[0] = posts.artist.stats.listeners;
+   this.playCount[0] = posts.artist.stats.playcount;
+   this.published[0] = posts.artist.bio.published;
+   this.summary[0] = posts.artist.bio.summary;
  });
 }
 
@@ -22,7 +32,11 @@ getValue2(val: string){
   this.http
 .get('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+val+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
 .subscribe((posts: any)=>{
- alert(posts.artist.stats.listeners)
+  this.name[1] = posts.artist.name;
+  this.listener[1] = posts.artist.stats.listeners;
+  this.playCount[1] = posts.artist.stats.playcount;
+  this.published[1] = posts.artist.bio.published;
+  this.summary[1] = posts.artist.bio.summary;
 });
 }
 
