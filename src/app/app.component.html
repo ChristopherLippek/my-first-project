@@ -29,6 +29,6 @@
     <p>{{post.artists.artist.playcount}}</p>
 </div>
 <div *ngIf="receivedChildMessage">
-    <p>{{receivedChildMessage}}</p>
+    <app-compare-screen></app-compare-screen>
     <button (click)="returnToMain()">Zurück</button>
 </div>

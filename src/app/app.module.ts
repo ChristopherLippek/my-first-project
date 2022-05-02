@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
+import { CompareScreenComponent } from './compare-screen/compare-screen.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
     ProposalsComponent,
     ProfileRowComponent,
     FriendboxComponent,
-    ArtistDetailComponent
+    ArtistDetailComponent,
+    CompareScreenComponent
   ],
   imports: [
     BrowserModule,
