@@ -10,7 +10,7 @@
             <option *ngFor="let country of countries">{{country}}</option>
         </select>
 
-                <app-artist-card *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [text]='names[i]' [picture]='pic[i]' [listeners]='listeners[i]' (click)="onSelectedArtist(names[i])">
+                <app-artist-card *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [text]='artist[i].name' [picture]='artist[i].picture' [listeners]='artist[i].listeners' (click)="onSelectedArtist(artist[i].name)">
                 </app-artist-card>
             </div>
         </div>

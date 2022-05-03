@@ -1,3 +1,5 @@
+import { ArtistSearchService } from './artist-search.service';
+import { Artist } from './artist';
 import { HeaderComponent } from './header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
@@ -17,7 +19,8 @@ export class AppComponent{
   selctedCountry: string = '';
   selectedArtist: string = "";
 
-  constructor(private http: HttpClient){ 
+  constructor(private http: HttpClient, private artistServices: ArtistSearchService){ 
+   
     this.loadGermany();
 }
 
@@ -31,7 +34,7 @@ export class AppComponent{
   similar: string[] = [];
   pic: string[] = [];
 
-
+  artist: Artist [] = [];
   buttonSignalFromHeader: string; 
 
   posts: any [] = [];
@@ -41,46 +44,12 @@ export class AppComponent{
   countries: string[] = ["germany", "france", "spain"];
 
   loadGermany(){
-    this.http
-  .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=germany&api_key=9de61f588c001cf9f09470d925434648&format=json')
-  .subscribe((posts: any)=>{
-      
-      for(let i = 0; i<10; i++)
-      {
-        this.names[i] = posts.topartists.artist[i].name;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.listeners[i] = posts.topartists.artist[i].listeners;
-      }
-      for(let i = 0; i<10; i++)
-      {
-        this.pictures[i] = posts.topartists.artist[i].image[0];
-      }
-  
-  });
-}
+    this.artist = this.artistServices.loadGermany();
+  }
 
 selectedChangeHandler (event){
-
-  this.selctedCountry = event.target.value; 
-  this.http
-  .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country='+''+this.selctedCountry+''+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
-  .subscribe((posts: any)=>{
-
-    for(let i = 0; i<10; i++)
-    {
-      this.names[i] = posts.topartists.artist[i].name;
-    }
-    for(let i = 0; i<10; i++)
-    {
-      this.listeners[i] = posts.topartists.artist[i].listeners;
-    }
-    for(let i = 0; i<10; i++)
-    {
-      this.pictures[i] =posts.topartists.artist[i].image[0][0];
-    }
-});
+  this.artist = [];
+  this.artist = this.artistServices.loadSelectedCountry(event.target.value);
 }
 
 
