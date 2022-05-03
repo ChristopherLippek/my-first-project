@@ -36,7 +36,8 @@ export class AppComponent{
   detailArtist: Artist; 
   track: Track[] = [];
   album: Album [] = [];
-  
+  picture: string [] = [];
+
   buttonSignalFromHeader: string; 
 
   posts: any [] = [];
@@ -45,10 +46,20 @@ export class AppComponent{
 
 defaultArtistList(){
     this.artist = this.artistServices.loadGermany();
+
+
+    this.http
+      .get('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=germany&api_key=9de61f588c001cf9f09470d925434648&format=json')
+      .subscribe((posts: any)=>{
+    for(let i = 0; i<10; i++){
+      this.picture[i] = posts.topartists.artist[i].image[0]['#text'];
+    }});
+  
   }
 
 selectedChangeHandler (event){
   this.artist = [];
+  
   this.artist = this.artistServices.loadSelectedCountry(event.target.value);
 }
 

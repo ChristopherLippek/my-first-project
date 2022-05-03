@@ -6,11 +6,11 @@
     </form>
     <button (click)="getValue(box.value)">Suchen</button>
 
-    <p>Name des Artist: {{name[0]}}</p>
-    <p>Zuhörer: {{listener[0]}}</p>
-    <p>Streams: {{playCount[0]}}</p>
-    <p>Gründung: {{published[0]}}</p>
-    <p>Zusammenfassung: {{summary[0]}}</p>
+    <p>Name des Artist: {{compareArtist[0].name}}</p>
+    <p>Zuhörer: {{compareArtist[0].listener}}</p>
+    <p>Streams: {{compareArtist[0].playcount}}</p>
+    <p>Gründung: {{compareArtist[0].published}}</p>
+    <p>Zusammenfassung: {{compareArtist[0].summary}}</p>
     <p *ngFor="let i of [0,1,2,3,4]">{{genre1[i]}}</p>
 </div>
 
