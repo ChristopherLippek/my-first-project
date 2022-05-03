@@ -1,4 +1,4 @@
 <div class="margin-bootom-16">
     <b>Vorschläge</b>
 </div>
-<app-profile-row *ngFor="let i of [0,1,2,3,4]" [similar]='similar[i]' [picture]='picture[i]'></app-profile-row>
+<app-profile-row *ngFor="let i of [0,1,2,3,4]" [similar]='similar[i].name' [picture]='similar[i].pic'></app-profile-row>

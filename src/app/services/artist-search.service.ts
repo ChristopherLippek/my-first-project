@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Artist } from '../module/artist';
+import { Artist } from '../modelle/artist';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,8 +8,7 @@ import { Injectable } from '@angular/core';
 export class ArtistSearchService {
 
   artist: Artist [] = [];
-  constructor(public http: HttpClient) {
-    ;
+  constructor(private http: HttpClient) {
    }
 
 

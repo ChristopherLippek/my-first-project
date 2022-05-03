@@ -1,3 +1,4 @@
+import { SimilarArtist } from './../modelle/similar-artist';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProposalsComponent implements OnInit {
 
-  @Input() similar: string[] = [];
-  @Input() picture: string[] = [];
+  @Input() similar: SimilarArtist[];
 
   constructor() { }
 

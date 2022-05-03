@@ -1,4 +1,7 @@
+import { Track } from './../modelle/track';
+import { Artist } from './../modelle/artist';
 import { Component, Input, OnInit } from '@angular/core';
+import { Album } from '../modelle/album';
 
 @Component({
   selector: 'app-artist-detail',
@@ -7,11 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArtistDetailComponent implements OnInit {
 
-  @Input() name:string ='';
-  @Input() listeners:string ='';
-  @Input() playcount:string ='';
-  @Input() tracks:string [] = [];
-  @Input() alben:string [] = [];
+  @Input() artist: Artist;
+  @Input() tracks:Track [] = [];
+  @Input() alben:Album [] = [];
   
   constructor() { }
 

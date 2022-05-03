@@ -1,14 +1,14 @@
 <div class="text">
-    <p> Der Künstler heißt: {{name}}</p>
-    <p>Er hat: {{listeners}} Zuhörer</p>
-    <p>und soviele streams: {{playcount}}</p>
+    <p> Der Künstler heißt: {{artist.name}}</p>
+    <p>Er hat: {{artist.playcount}} Zuhörer</p>
+    <p>und soviele streams: {{artist.playcount}}</p>
 </div>
 <div class="left">
     <h1>Besten Alben</h1>
-    <p *ngFor="let i of [0,1,2,3,4]">{{alben[i]}}</p>
+    <p *ngFor="let i of [0,1,2,3,4]">{{alben[i].name}}</p>
 </div>
 
 <div class="right">
     <h2>Besten Lieder</h2>
-    <p *ngFor="let i of [0,1,2,3,4]">{{tracks[i]}}</p>
+    <p *ngFor="let i of [0,1,2,3,4]">{{tracks[i].name}}</p>
 </div>

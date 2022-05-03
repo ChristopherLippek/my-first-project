@@ -1,10 +1,15 @@
+import { SimilarArtist } from './modelle/similar-artist';
+import { SimilarArtistSearchService } from './services/similar-artist-search.service';
+import { DetailArtistSearchService } from './services/detail-artist-search.service';
 import { ArtistSearchService } from './services/artist-search.service';
-import { Artist } from './module/artist';
+import { Artist } from './modelle/artist';
 import { HeaderComponent } from './header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { interval, map, startWith } from 'rxjs';
+import { Track } from './modelle/track';
+import { Album } from './modelle/album';
 
 
 
@@ -19,31 +24,26 @@ export class AppComponent{
   selctedCountry: string = '';
   selectedArtist: string = "";
 
-  constructor(private http: HttpClient, private artistServices: ArtistSearchService){ 
-   
-    this.loadGermany();
+  constructor(private http: HttpClient, private artistServices: ArtistSearchService, private artistDetails: DetailArtistSearchService, private searchSimilarArtist: SimilarArtistSearchService){ 
+    this.defaultArtistList();
 }
-
-  detailName: string = '';
-  detailListener: string = '';
-  detailPlays: string = '';
-  detailTrack: string [] = [];
-  detailAlbum: string [] = []; 
-
+  nearlyArtist: SimilarArtist[] = [];
   imageUrl$: any;
   similar: string[] = [];
   pic: string[] = [];
 
   artist: Artist [] = [];
+  detailArtist: Artist; 
+  track: Track[] = [];
+  album: Album [] = [];
+  
   buttonSignalFromHeader: string; 
 
   posts: any [] = [];
-  names: string [] = [];
-  listeners: string [] = [];
-  pictures: string [] = [];
+
   countries: string[] = ["germany", "france", "spain"];
 
-  loadGermany(){
+defaultArtistList(){
     this.artist = this.artistServices.loadGermany();
   }
 
@@ -55,48 +55,11 @@ selectedChangeHandler (event){
 
 onSelectedArtist(name: string)
 {
- this.selectedArtist = name;
-
- this.http
- .get('https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
- .subscribe((posts: any)=>{
-
-   for(let i = 0; i<5; i++)
-   {
-     this.detailAlbum[i] = posts.topalbums.album[i].name;
-   }
-
-   });
-
-
-   this.http
-  .get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
-  .subscribe((posts: any)=>{
-
-   for(let i = 0; i<5; i++)
-   {
-     this.detailTrack[i] = posts.toptracks.track[i].name;
-   }
-
-  });
- 
-
- this.http
- .get('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+this.selectedArtist+'&api_key=9de61f588c001cf9f09470d925434648&format=json')
- .subscribe((posts: any)=>{
-
-  this.detailName = posts.artist.name;
-  this.detailListener = posts.artist.stats.listeners;
-  this.detailPlays = posts.artist.stats.playcount;
-
-  for(let i = 0; i<5; i++)
-  {
-    this.similar[i] = posts.artist.similar.artist[i].name;
-    this.pic[i] = posts.artist.image[0]['#text'];
-
-    this.imageUrl$ = interval(5000).pipe(map(i => {return this.pic[i]}),startWith(this.pic[i]));
-    }
-});
+  this.selectedArtist = name;
+  this.track = this.artistDetails.loadTracks(name);
+  this.album = this.artistDetails.loadAlbums(name);
+  this.detailArtist = this.artistDetails.onSelectedArtist(name); 
+  this.nearlyArtist = this.searchSimilarArtist.loadSimilarArtist(name);
 }
 
 returnSelectedItem(){
