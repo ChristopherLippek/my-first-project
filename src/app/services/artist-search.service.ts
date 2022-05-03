@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Artist } from './artist';
+import { Artist } from '../module/artist';
 import { Injectable } from '@angular/core';
 
 @Injectable({

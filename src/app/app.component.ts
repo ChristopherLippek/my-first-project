@@ -1,5 +1,5 @@
-import { ArtistSearchService } from './artist-search.service';
-import { Artist } from './artist';
+import { ArtistSearchService } from './services/artist-search.service';
+import { Artist } from './module/artist';
 import { HeaderComponent } from './header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';

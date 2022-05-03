@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { SearchArtistService } from './../search-artist.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 
